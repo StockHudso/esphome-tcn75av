@@ -1,4 +1,4 @@
-#include "tcn75av_sensor.h"
+#include "tcn75av.h"
 #include "esphome/core/log.h"
 
 namespace esphome {
