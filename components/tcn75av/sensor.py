@@ -12,11 +12,14 @@ TCN75AVSensor = tcn75av_ns.class_(
 )
 
 CONFIG_SCHEMA = (
-    sensor.sensor_schema(
-        unit_of_measurement=UNIT_CELSIUS,
-        accuracy_decimals=2,
-        device_class=DEVICE_CLASS_TEMPERATURE,
-        state_class=STATE_CLASS_MEASUREMENT,
+    sensor.polling_component_schema("10s")
+    .extend(
+        sensor.sensor_schema(
+            unit_of_measurement=UNIT_CELSIUS,
+            accuracy_decimals=2,
+            device_class=DEVICE_CLASS_TEMPERATURE,
+            state_class=STATE_CLASS_MEASUREMENT,
+        )
     )
     .extend(
         {
@@ -25,6 +28,7 @@ CONFIG_SCHEMA = (
     )
     .extend(i2c.i2c_device_schema(0x48))
 )
+
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
