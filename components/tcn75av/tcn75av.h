@@ -11,12 +11,11 @@ class TCN75AVSensor : public PollingComponent,
                       public sensor::Sensor,
                       public i2c::I2CDevice {
  public:
-  ~TCN75AVSensor() override = default; 
+  ~TCN75AVSensor() override;   // DECLARATION ONLY
+
   void setup() override;
   void update() override;
 };
 
-
 }  // namespace tcn75av
 }  // namespace esphome
-
